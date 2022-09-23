@@ -24,7 +24,7 @@ pipeline {
 			stage("test_e2e"){
 				steps {
 					echo 'e2e 1'
-					sleep 5 7 
+					sleep 7 
 					echo 'e2e 2'
 				}
 
