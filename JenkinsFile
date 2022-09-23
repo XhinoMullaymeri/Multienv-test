@@ -15,15 +15,17 @@ pipeline {
 		parallel{
 			stage("test_unit"){
 				steps {
-					echo 'Testig step'
-					echo 'Testig step2'
+					echo 'unit 1'
+					sleep 5
+					echo 'unit 2'
 				}
 
 			}
 			stage("test_e2e"){
 				steps {
-					echo 'Testig step'
-					echo 'Testig step2'
+					echo 'e2e 1'
+					sleep 5 7 
+					echo 'e2e 2'
 				}
 
 			}
