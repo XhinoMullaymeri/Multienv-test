@@ -11,21 +11,22 @@ pipeline {
 			}
 
 		}
-		
-	parallel{
-		stage("test_unit"){
-			steps {
-				echo 'Testig step'
-				echo 'Testig step2'
-			}
+	stage("tests"){	
+		parallel{
+			stage("test_unit"){
+				steps {
+					echo 'Testig step'
+					echo 'Testig step2'
+				}
 
-		}
-		stage("test_e2e"){
-			steps {
-				echo 'Testig step'
-				echo 'Testig step2'
 			}
+			stage("test_e2e"){
+				steps {
+					echo 'Testig step'
+					echo 'Testig step2'
+				}
 
+			}
 		}
 	}
 		
