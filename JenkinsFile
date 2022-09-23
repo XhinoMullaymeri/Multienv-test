@@ -17,7 +17,7 @@ pipeline {
 			
 			steps {
 				echo 'Testig step'
-				sh 'python --version'
+				echo 'Testig step2'
 			}
 
 		}
