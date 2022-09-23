@@ -7,8 +7,7 @@ pipeline {
 		stage("build"){
 			
 			steps {
-
-
+				echo 'Building step'
 			}
 
 		}
@@ -17,8 +16,8 @@ pipeline {
 		stage("test"){
 			
 			steps {
-
-
+				echo 'Testig step'
+				dir
 			}
 
 		}
@@ -27,8 +26,7 @@ pipeline {
 		stage("clean-up"){
 			
 			steps {
-
-
+				echo 'Cleaning step'
 			}
 
 		}
