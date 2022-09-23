@@ -17,7 +17,7 @@ pipeline {
 			
 			steps {
 				echo 'Testig step'
-				sh 'pwd'
+				sh 'python --version'
 			}
 
 		}
