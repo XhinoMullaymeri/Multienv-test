@@ -16,7 +16,8 @@ pipeline {
 		stage("test"){
 			
 			steps {
-				echo 'Testig step'
+				echo 'Testig step',
+				pwd
 			}
 
 		}
