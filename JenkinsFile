@@ -17,10 +17,10 @@ pipeline {
 				steps {
 					echo 'unit 1'
 					// sleep 10
-					sh ''' 
-					export TEST_VAR_X="test"
-					echo $TEST_VAR_X
+					bat ''' 
+					set TEST_VAR=1
 					'''
+					echo $TEST_VAR
 					echo 'unit 2'
 				}
 
