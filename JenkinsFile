@@ -20,7 +20,7 @@ pipeline {
 					bat ''' 
 					set TEST_VAR=1
 					'''
-					echo %TEST_VAR
+					echo '%TEST_VAR%'
 					echo 'unit 2'
 				}
 
