@@ -17,7 +17,10 @@ pipeline {
 				steps {
 					echo 'unit 1'
 					// sleep 10
-					sh (returnStatus: true, script: 'export TEST_VAR_X="test \nEOF')
+					sh ''' 
+					export TEST_VAR_X="test"
+					echo $TEST_VAR_X
+					'''
 					echo 'unit 2'
 				}
 
