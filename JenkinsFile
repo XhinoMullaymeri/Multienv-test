@@ -43,7 +43,7 @@ pipeline {
 			
 				echo 'Cleaning step'
 				echo 'echoing TEST_VAR'
-				echo %TEST_VAR%
+				echo '%TEST_VAR%'
 			}
 
 		}
