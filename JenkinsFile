@@ -17,7 +17,7 @@ pipeline {
 				steps {
 					echo 'unit 1'
 					// sleep 10
-					export TEST_VAR_X="test"
+					sh( returnStdout: true, script: 'export TEST_VAR_X="test')
 					echo 'unit 2'
 				}
 
