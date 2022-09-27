@@ -19,8 +19,8 @@ pipeline {
 					// sleep 10
 					bat ''' 
 					set TEST_VAR=1
-					echo 
-					%TEST_VAR%
+					echo off
+					echo "TEST_VAR is: " %TEST_VAR%
 					'''
 
 					echo 'unit 2'
@@ -45,8 +45,8 @@ pipeline {
 			
 				echo 'Cleaning step'
 				echo 'echoing TEST_VAR'
-				bat ''' echo
-				%TEST_VAR%
+				bat ''' echo off
+				echo "TEST_VAR is: " %TEST_VAR%
 				'''
 			}
 
