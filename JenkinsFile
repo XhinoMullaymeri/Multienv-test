@@ -1,72 +1,9 @@
-//pipeline {
 
-// 	agent any
+pipeline {
+
+	agent any
 	
-// 	stages {
-	
-// 		stage("build"){
-			
-// 			steps {
-// 				echo 'Building step'
-// 			}
-
-// 		}
-// 	stage("tests"){	
-// 		parallel{
-// 			stage("test_unit"){
-// 				steps {
-// 					echo 'unit 1'
-// 					// sleep 10
-// 					bat ''' 
-// 					set TEST_VAR=1
-// 					echo off
-// 					echo "TEST_VAR is: " %TEST_VAR%
-// 					'''
-
-// 					echo 'unit 2'
-// 				}
-
-// 			}
-// 			stage("test_e2e"){
-// 				steps {
-// 					echo 'e2e 1'
-// 					// sleep 3 
-
-// 					echo 'e2e 2'
-// 				}
-
-// 			}
-// 		}
-// 	}
-		
-// 		stage("clean-up"){
-			
-// 			steps {
-			
-// 				echo 'Cleaning step'
-// 				echo 'echoing TEST_VAR'
-// 				bat ''' echo off
-// 				echo "TEST_VAR is: " %TEST_VAR%
-// 				'''
-// 			}
-
-// 		}
-
-// 	}
-
-
-// }
-
-
-matrix {
-    axes {
-        axis {
-            name 'PLATFORM'
-            values 'linux', 'mac', 'windows'
-        }
-    }
-    
-    stages {
+	stages {
 	
 		stage("build"){
 			
@@ -76,6 +13,14 @@ matrix {
 
 		}
 	stage("tests"){	
+	            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PLATFORM'
+                        values 'linux', 'windows', 'mac'
+                    }
+		    }
 		parallel{
 			stage("test_unit"){
 				steps {
@@ -102,6 +47,7 @@ matrix {
 			}
 		}
 	}
+	}
 		
 		stage("clean-up"){
 			
@@ -117,4 +63,6 @@ matrix {
 		}
 
 	}
-   }
+
+
+}
