@@ -1,6 +1,4 @@
-pipeline {
 
-	agent any
 
 matrix {
     axes {
@@ -9,6 +7,10 @@ matrix {
             values 'py38', 'py39', 'py310'
         }
     }
+    pipeline {
+
+	agent any
+	
 	stages {
 	
 		stage("build"){
