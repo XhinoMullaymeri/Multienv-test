@@ -1,59 +1,89 @@
 
-pipeline {
+// pipeline {
 
-	agent any
+// 	agent any
 	
-	stages {
+// 	stages {
 	
-		stage("build"){
+// 		stage("build"){
 			
-			steps {
-				echo 'Building step'
-			}
+// 			steps {
+// 				echo 'Building step'
+// 			}
 
-		}
-	stage("tests"){	
+// 		}
+// 	stage("tests"){	
 
-		parallel{
-			stage("test_unit"){
-				steps {
-					echo 'unit 1'
-					// sleep 10
-					bat ''' 
-					set TEST_VAR=1
-					echo off
-					echo "TEST_VAR is: " %TEST_VAR%
-					'''
+// 		parallel{
+// 			stage("test_unit"){
+// 				steps {
+// 					echo 'unit 1'
+// 					// sleep 10
+// 					bat ''' 
+// 					set TEST_VAR=1
+// 					echo off
+// 					echo "TEST_VAR is: " %TEST_VAR%
+// 					'''
 
-					echo 'unit 2'
-				}
+// 					echo 'unit 2'
+// 				}
 
-			}
-			stage("test_e2e"){
-				steps {
-					echo 'e2e 1'
-					// sleep 3 
+// 			}
+// 			stage("test_e2e"){
+// 				steps {
+// 					echo 'e2e 1'
+// 					// sleep 3 
 
-					echo 'e2e 2'
-				}
+// 					echo 'e2e 2'
+// 				}
 
-			}
-		}
-	}
+// 			}
+// 		}
+// 	}
 	
 		
-		stage("clean-up"){
+// 		stage("clean-up"){
 			
-			steps {
+// 			steps {
 			
-				echo 'Cleaning step'
-				echo 'echoing TEST_VAR'
-				bat ''' echo off
-				echo "TEST_VAR is: " %TEST_VAR%
-				'''
-			}
+// 				echo 'Cleaning step'
+// 				echo 'echoing TEST_VAR'
+// 				bat ''' echo off
+// 				echo "TEST_VAR is: " %TEST_VAR%
+// 				'''
+// 			}
 
-		}
+// 		}
 
-	}
+// 	}
+// }
+
+
+pipeline {
+    agent none
+    stages {
+        stage('BuildAndTest') {
+            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PYTHON_VERSION_ENV'
+                        values 'py38', 'py39', 'py310'
+                    }
+                }
+                stages {
+                    stage('Build') {
+                        steps {
+                            echo "Do Build for ${PYTHON_VERSION_ENV} "
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo "Do Test for ${PYTHON_VERSION_ENV}"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
