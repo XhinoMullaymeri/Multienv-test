@@ -40,7 +40,7 @@ pipeline {
 			}
 		}
 	}
-	}
+	
 		
 		stage("clean-up"){
 			
@@ -56,3 +56,4 @@ pipeline {
 		}
 
 	}
+}
