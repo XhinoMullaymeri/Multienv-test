@@ -13,7 +13,7 @@ pipeline {
 
 		}
 	stage("tests"){	
-	            matrix {
+	        matrix {
                 agent any
                 axes {
                     axis {
@@ -21,7 +21,7 @@ pipeline {
                         values 'linux', 'windows', 'mac'
                     }
 		    }
-		parallel{
+		//parallel{
 			stage("test_unit"){
 				steps {
 					echo 'unit 1'
@@ -46,7 +46,7 @@ pipeline {
 
 			}
 		}
-	}
+	//}
 	}
 		
 		stage("clean-up"){
