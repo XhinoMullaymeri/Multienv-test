@@ -51,21 +51,18 @@ pipeline {
         stage('local-2') {
           agent {label 'windows-local-agent-2'}
           stages {
-		  stage('parallel stages'){
-			  parallel{
-				stage('build') {
-				      steps {
-					echo "Build for windows-local-agent-2"              
-					}
-				    }
-				stage('run') {
-				      steps {
-					echo "Run for windows-local-agent-2"
-				      }
-				    }
-			  }
-		  }
-            
+
+		stage('build') {
+		      steps {
+			echo "Build for windows-local-agent-2"              
+			}
+		    }
+		stage('run') {
+		      steps {
+			echo "Run for windows-local-agent-2"
+		      }
+		    }
+
           }
         }      
         }      
