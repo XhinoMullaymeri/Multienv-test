@@ -27,45 +27,82 @@
 //     }
 // }
 
-
+// ================================================================================================
 pipeline {
+//   agent none
+//   stages {
+//     stage('build and run') {
+//       parallel {
+//         stage('local-1') {
+//           agent {label 'windows-local-agent'}
+//           stages {
+//             stage('build') {
+//               steps {
+//  		echo "Build for windows-local-agent-1"
+//               }
+//             }
+//             stage('run') {
+//               steps {
+//                 echo "Run for windows-local-agent-1"
+//               }
+//             }
+//           }
+//         }
+//         stage('local-2') {
+//           agent {label 'windows-local-agent-2'}
+//           stages {
+
+// 		stage('build') {
+// 		      steps {
+// 			echo "Build for windows-local-agent-2"              
+// 			}
+// 		    }
+// 		stage('run') {
+// 		      steps {
+// 			echo "Run for windows-local-agent-2"
+// 		      }
+// 		    }
+
+//           }
+//         }      
+//         }      
+//       }
+//     }
+//   }
+
+ // ================================================================================================
+  pipeline {
   agent none
+
+  environment {
+    ENV_VARIABLE_PYTHON="RANDOM"
+  }
+
   stages {
-    stage('build and run') {
-      parallel {
-        stage('local-1') {
-          agent {label 'windows-local-agent'}
-          stages {
-            stage('build') {
-              steps {
- 		echo "Build for windows-local-agent-1"
-              }
+    stage('Setup & Build') {
+      matrix {
+        axes {
+          axis {
+            name 'PY_VERSION'
+            values 'python=3.8.*', 'python=3.9.*', 'python=3.10.*'
+          }
+        }
+        stages {
+
+          stage('Setup') {
+            steps {
+              echo "setup"
             }
-            stage('run') {
-              steps {
-                echo "Run for windows-local-agent-1"
-              }
+          }
+
+          stage('Build') {
+            steps {
+              echo "Build"
             }
           }
         }
-        stage('local-2') {
-          agent {label 'windows-local-agent-2'}
-          stages {
-
-		stage('build') {
-		      steps {
-			echo "Build for windows-local-agent-2"              
-			}
-		    }
-		stage('run') {
-		      steps {
-			echo "Run for windows-local-agent-2"
-		      }
-		    }
-
-          }
-        }      
-        }      
       }
     }
   }
+
+}
