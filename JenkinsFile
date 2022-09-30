@@ -74,11 +74,12 @@
 
 
 pipeline {
-  agent {
-   node {
-    label 'windows-local-agent'
-   }
-  }
+
+   parameters {
+        choice(name: 'PY_VERSION', choices: ['all', 'python=3.8.*', 'python=3.9.*', 'python=3.10.*'], description: 'Run on specific platform')
+    }
+
+  agent none
 
   environment {
     ENV_VARIABLE_PYTHON="RANDOM"
@@ -87,6 +88,9 @@ pipeline {
   stages {
     stage('Setup & Build') {
       matrix {
+       agent{
+          label 'windows-local-agent'
+        }     
         axes {
           axis {
             name 'PY_VERSION'
