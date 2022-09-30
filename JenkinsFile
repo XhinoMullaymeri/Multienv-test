@@ -71,7 +71,8 @@ pipeline {
 //   }
 
  // ================================================================================================
-  pipeline {
+
+pipeline {
   agent none
 
   environment {
@@ -81,6 +82,7 @@ pipeline {
   stages {
     stage('Setup & Build') {
       matrix {
+        agent any
         axes {
           axis {
             name 'PY_VERSION'
