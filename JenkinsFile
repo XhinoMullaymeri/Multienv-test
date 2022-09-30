@@ -74,7 +74,11 @@
 
 
 pipeline {
-  agent none
+  agent {
+   node {
+    label 'windows-local-agent'
+   }
+  }
 
   environment {
     ENV_VARIABLE_PYTHON="RANDOM"
@@ -83,7 +87,6 @@ pipeline {
   stages {
     stage('Setup & Build') {
       matrix {
-        agent any
         axes {
           axis {
             name 'PY_VERSION'
