@@ -73,38 +73,31 @@ pipeline {
  // ================================================================================================
 
 pipeline {
-  agent none
-
-  environment {
-    ENV_VARIABLE_PYTHON="RANDOM"
-  }
-
-  stages {
-    stage('Setup & Build') {
-      matrix {
-        agent any
-        axes {
-          axis {
-            name 'PY_VERSION'
-            values 'python=3.8.*', 'python=3.9.*', 'python=3.10.*'
-          }
-        }
-        stages {
-
-          stage('Setup') {
-            steps {
-              echo "setup"
+    agent none
+    stages {
+        stage('BuildAndTest') {
+            matrix {
+                agent any
+                axes {
+                    axis {
+                        name 'PYTHON_VERSION_ENV'
+                        values 'py38', 'py39', 'py310'
+                    }
+                }
+                stages {
+                    stage('Build') {
+                        steps {
+                            echo "Do Build for ${PYTHON_VERSION_ENV} "
+                        }
+                    }
+                    stage('Test') {
+                        steps {
+                            echo "Do Test for ${PYTHON_VERSION_ENV}"
+                        }
+                    }
+                }
             }
-          }
-
-          stage('Build') {
-            steps {
-              echo "Build"
-            }
-          }
         }
-      }
     }
-  }
-
 }
+
