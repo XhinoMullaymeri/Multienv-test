@@ -97,13 +97,13 @@ pipeline {
 
           stage('Setup') {
             steps {
-              echo "setup"
+              echo "setup ${PY_VERSION}"
             }
           }
 
           stage('Build') {
             steps {
-              echo "Build"
+              echo "Build ${PY_VERSION}"
             }
           }
         }
